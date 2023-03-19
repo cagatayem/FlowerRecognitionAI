@@ -1,0 +1,717 @@
+@import "_variables";
+@import "_mixins";
+
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+body{
+    box-sizing: border-box;
+    background-color: $background-color;
+    font-family: 'Poppins', sans-serif;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+}
+
+
+// ------------------------Main Header-----------------------------
+.header{
+    min-height: 15vh;
+    @include flex-box($flex-row, $secondary-justify, $primary-align);
+    padding: 1rem 1rem 0rem 1rem;
+    max-width: 100%;
+   
+    &__logo-box{
+        @include flex-box($flex-row,"", $primary-align);
+        height:4rem;
+    }
+
+    &__logo{
+        height: 100%;
+        
+        &--animation{
+            -webkit-animation: fadeInRight 2s; /* Safari, Chrome and Opera > 12.1 */
+            -moz-animation: fadeInRight 2s; /* Firefox < 16 */
+            -ms-animation: fadeInRight 2s; /* Internet Explorer */
+            -o-animation: fadeInRight 2s; /* Opera < 12.1 */
+             animation: fadeInRight 3s;
+        }
+
+        &-tittle{
+            font-size:1.7rem;
+            display: none;
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 0.4rem;
+            font-weight: 400;
+
+            &--primary{
+                color: #9198e5;
+            }
+            &--secondary{
+                color:#e66465;
+            }
+            
+            &--animation{
+                -webkit-animation: fadeInRight 2s; /* Safari, Chrome and Opera > 12.1 */
+                -moz-animation: fadeInRight 2s; /* Firefox < 16 */
+                -ms-animation: fadeInRight 2s; /* Internet Explorer */
+                -o-animation: fadeInRight 2s; /* Opera < 12.1 */
+                 animation: fadeInRight 3s;
+            }
+        }
+    
+      }
+
+    &__navbar{
+        
+        &-list{
+            display: flex;
+
+        }
+        
+        &-item{
+            list-style: none;
+            margin-right: 0.5rem;
+
+             &--animation{
+                -webkit-animation: fadeInUp 2s; /* Safari, Chrome and Opera > 12.1 */
+                -moz-animation: fadeInUp 2s; /* Firefox < 16 */
+                -ms-animation: fadeInUp 2s; /* Internet Explorer */
+                -o-animation: fadeInUp 2s; /* Opera < 12.1 */
+                animation: fadeInUp 2s;
+             }
+        }
+    
+        &-link--primary{
+            @include links-buttons($border-radius);
+            padding: 0.6rem 1.2rem;
+            background: $primary-color;
+            
+            &:hover{
+                background:$secondary-color;
+            }
+        }
+        &-link--secondary{
+            @include links-buttons($border-radius);
+            padding: 0.6rem 1rem;
+            background: $secondary-color;
+            
+            &:hover{
+                background: $primary-color;
+            }
+        }
+        
+    }
+}
+
+//--------------------------Main Showcase----------------------------------
+.showcase{
+    padding: 0.5rem;
+    
+    &__image{
+    background-image: url("/static/pictures/flowimage.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 55vh;
+    max-width: 100%;
+   
+    &--animation{
+        -webkit-animation: rotate 4s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: rotate 4s; /* Firefox < 16 */
+        -ms-animation: rotate 4s; /* Internet Explorer */
+        -o-animation: rotate 4s; /* Opera < 12.1 */
+        animation: rotate 4s;
+            }
+            
+    }
+
+    &__text{
+        font-weight: 200;
+        text-align: center;
+        font-size:1.5rem;
+        letter-spacing: 0.5px;
+        &--animation{
+            -webkit-animation: fadein 6s; /* Safari, Chrome and Opera > 12.1 */
+            -moz-animation: fadein 6s; /* Firefox < 16 */
+             -ms-animation: fadein 6s; /* Internet Explorer */
+              -o-animation: fadein 6s; /* Opera < 12.1 */
+                 animation: fadein 6s;
+        }
+    }
+}
+
+//--------------------------------Section-1 (type of flowers)----------------------
+.section-1{
+    //--------header
+    
+    &__header{
+        text-align: center;
+        padding:2rem 0;
+        &-tittle{
+            @include section-tittles();
+            
+        }
+
+        &-text{
+            @include section-texts();
+            width: 27%;
+            
+        }
+    }
+
+    //---------body
+
+    &__body{
+        margin: 0 auto;
+        width: 100%;
+
+        &-row{
+            @include flex-box($flex-row, $primary-justify, $primary-align);
+            flex-flow: wrap;
+        }
+
+        &-card{
+            
+            cursor: pointer;
+            width: 88%;
+            height: 500px;
+            border: none;
+            position: relative;
+            margin: 1rem 0;
+
+            &-front, &-back{
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    backface-visibility: hidden;
+                    transition: transform .6s linear;
+                    position: absolute;
+                    
+            }
+
+            &-front{
+                transform: perspective(600px) rotateY(0deg);
+            }
+            
+            &-back{
+                background-color:#f1f1f1;
+                transform: perspective(600px) rotateY(180deg);
+            }
+
+            :hover > &-front{
+                transform: perspective(600px) rotateY(-180deg);
+            }
+
+            :hover > &-back{
+                transform: perspective(600px) rotateY(0deg);
+            }
+
+            &-content{
+                box-sizing: border-box;
+                height: 100%;
+                width: 100%;
+                @include flex-box($flex-column, $primary-justify, $primary-align);
+                text-align: center;
+                padding: 2rem;
+            }
+        }
+        
+        img{
+            width: 100%;
+            height: 100%;
+            
+        }
+        
+    }
+
+}
+//-----------------Section 2. Predicting and Results ------------------
+.section-2{
+    //header
+    overflow-x: hidden;
+    &__header{
+        text-align: center;
+        padding:2rem 0;
+        &-tittle{
+            @include section-tittles();
+        }
+
+        &-text{
+            @include section-texts();
+            width: 42%;
+        }
+    }
+
+    //body
+
+    &__body{
+        max-width: 90%;
+        margin: 0 auto;
+        &-row{
+            @include flex-box($flex-column, $primary-justify, $primary-align);
+           
+        }
+
+        &-predict{
+            @include flex-box($flex-row, $primary-justify, $primary-align);
+            text-align: center;
+            max-width: 100%;
+            
+            &-label{
+                display: inline-block;
+                background:$primary-color; 
+                transition: all .4s;
+                padding: 0.67rem 1.2rem;
+                margin: 1rem;
+                @include links-buttons("");
+
+                &:hover{
+                    background: $secondary-color;
+                }
+            }
+
+            input[type="file"] {
+               display: none;
+           }
+
+           &-btn{
+            background:$secondary-color; 
+            transition: all .4s;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem;
+            @include links-buttons("");
+
+                &:hover{
+                    background:$primary-color;
+                }
+           }
+        }
+
+        &-image{
+            padding: 2rem;
+            
+            &-container{
+              height: 350px;
+              width: 330px;
+              
+              
+            }
+            
+            &-preview{
+                width: 100%;
+                height: 100%;
+                margin: 0 auto;
+                
+                @include box-shadow();
+                margin-top:0;
+                margin-bottom: 1em;   
+                background-color: $background-color; 
+                
+            }
+
+            &-preview > div{
+                width: 100%;
+                height: 100%;
+                background-size: 400px 300px;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+
+        &-result{
+            @include flex-box($flex-row, $primary-justify, $primary-align);
+           
+            .lds-hourglass {
+                display: inline-block;
+                position: relative;
+                width: 80px;
+                height: 80px;
+              }
+              .lds-hourglass:after {
+                content: " ";
+                display: block;
+                border-radius: 50%;
+                width: 0;
+                height: 0;
+                margin: 8px;
+                box-sizing: border-box;
+                border: 32px solid #000;
+                border-color: #000 transparent $color-white transparent;
+                animation: lds-hourglass 1.2s infinite;
+              }
+        }
+    }
+}
+// ---------------Section contact-----------
+
+.section-contact{
+    //-----header--------
+    &__header{
+        text-align: center;
+        padding:2rem 0;
+        
+        &-tittle{
+            @include section-tittles();
+        }
+
+        &-text{
+            @include section-texts();
+            max-width: 37%;
+            font-size: 1rem;
+        
+        }
+    }
+    
+    &__body{
+        .envelope{
+            background:$primary-color center center/90% 72% no-repeat;
+        }
+        .person{
+            background:$primary-color center center/63% 88% no-repeat;
+        }
+        
+    
+        &-row{
+            @include flex-box($flex-column, $primary-justify, $primary-align);
+            text-align: center;
+        }
+
+        h5{
+            font-size: 1rem;
+            font-weight: 300;   
+            margin-left: 0.6rem;
+        }
+
+        .teacher-contact{
+            box-sizing: border-box;
+            @include flex-box($flex-column, $primary-justify, "");
+            height: 250px;
+            border: 5px solid #F8F8F8;
+            @include box-shadow();
+            background-color: $background-color; 
+            padding: 1rem;
+            min-width: 350px;
+            width: 90%;
+            
+            margin-top: 1rem;
+            &__header{
+                margin: 0 auto;
+                font-size:1.4rem ;
+            }
+            &__name{
+                @include flex-box($flex-row,"", $primary-align);
+                margin-top: 1rem
+            }
+            &__email{
+                @include flex-box($flex-row,"", $primary-align);
+                margin-top: 1rem;
+
+            }
+            
+          
+
+        }
+
+        .my-contact{
+            box-sizing: border-box;
+            height: 250px;
+            border: 5px solid #F8F8F8;
+            @include box-shadow();            
+            background-color: $background-color; 
+            padding: 1rem;
+            min-width: 350px;
+            width: 90%;
+            @include flex-box($flex-column, $primary-justify, "");
+            margin-top: 1rem;
+            &__header{
+                margin: 0 auto;
+                font-size:1.4rem ;
+            }
+            &__name{
+                 @include flex-box($flex-row,"", $primary-align); 
+                 margin-top: 1rem;
+            }
+
+            &__email{
+                @include flex-box($flex-row,"", $primary-align);
+                margin-top: 1rem;
+            }
+            
+        }
+    }
+}
+
+// ------------Footer-----------------------------------
+.footer{
+    &__row{
+        @include flex-box($flex-row,$primary-justify, $primary-align);
+        color: #000;
+        background-color: rgba(19, 14, 14, 0.1);
+        height: 20vh;
+        margin-top: 1rem;;     
+        width: 100%; 
+    }
+    &__text{
+        font-size: 0.7rem;
+    }
+}
+
+//------------------keyframes-----------------------------
+
+@keyframes rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeInRight {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+}
+
+
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+
+@keyframes lds-hourglass {
+    0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+    transform: rotate(1800deg);
+    }
+}
+
+
+
+
+  //-----Media queryy-------------------
+
+@media screen and (max-width:340px){
+    body{
+        margin-left:0.5rem
+    }
+    .section-1__body-card{
+        width: 100%;
+        margin-left: 2rem;
+        
+    }
+    .header{
+        margin-left: 2rem;
+        
+        &__navbar-link{
+
+            &--primary{
+                font-size: 4px;
+            }
+            &--secondary{
+                font-size: 4px;
+            }
+        }
+        &__logo-box{
+            height: 2rem;
+        }
+    }
+    .showcase{
+        margin-left: 1.2rem;
+    }
+
+    .section-2__body-image-container{
+        width: 290px;
+        margin-left: 0.7rem;
+    }
+
+    .section-contact__body{
+        margin-left: 1.2rem;;
+    }
+    .footer{
+        width: 100%;
+    }
+    
+}
+
+
+@media screen and (min-width:576px){
+    .section-1__body-card{
+        width: 40%;
+        margin: 1rem;
+        
+    }
+}
+
+@media screen and (min-width:992px){
+   
+    .header{
+        &__logo-box{
+            height: 7rem;
+            margin: 1rem 0 0 1rem;
+        }
+        &__logo-tittle{
+            display: block;
+            margin-left: 1rem;
+
+        }
+        &__navbar-link{
+
+            &--primary{
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            &--secondary{
+                padding:0.8rem 1.3rem;
+                font-size: 1rem;
+            }
+        }
+        
+    }
+
+    .showcase{
+        &__image{
+            height: 65vh;
+    
+        }
+        &__text{
+            font-size: 2rem;
+        }
+    }
+
+    .section-1{
+
+        &__header{
+            &-tittle{
+                font-size:2.2rem;
+            }
+            &-text{
+                font-size: 1rem;
+            }
+        }
+
+        &__body{
+             width: 95%;
+
+             &-card{
+                width: 28%;
+                margin: 1rem;    
+             }
+        }
+    }
+   
+    .section-2{
+        &__header{
+            &-tittle{
+                font-size:2.2rem;
+            }
+            &-text{
+                font-size: 1rem;
+            }
+          }
+
+        &__body{
+            margin-right:8.5rem;
+            &-row{
+                flex-direction: row;
+            }
+
+            &-predict{
+                flex-direction: column;
+
+                &-label{
+                    font-size: 1rem;
+                    padding: 0.8rem 1.6em;
+                }
+                &-btn{
+                    font-size: 1rem;
+                    padding: 1rem 2rem;
+                    
+                    &:disabled{
+                        cursor: not-allowed;
+                    }
+                }
+
+            }
+        
+            &-image-container{
+                width: 500px;
+                
+            }
+           
+        }
+        
+    }
+
+    .section-contact{
+        
+
+        &__body{
+            
+            &-row{
+                flex-direction: row;
+                padding: 1rem;
+            }
+
+            .teacher-contact{
+               
+                width: 30%;
+                margin: 1rem;
+                &__header{
+                    font-size:1.7rem ;
+                }
+               
+            }
+            .my-contact{
+                width: 30%;
+                margin: 1rem;
+                &__header{
+                    font-size:1.7rem ;
+                }
+                
+            }
+            
+            h5{
+                font-size: 1.3rem;
+            }
+        }
+    }
+    
+    .footer{
+        &__text{
+            font-size: 1.1rem;
+        }
+    }
+}
+
